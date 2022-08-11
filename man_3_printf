@@ -1,0 +1,84 @@
+.TH _printf 1 "February 2018" "" "Linux Programmer's Manual"
+.SH NAME
+.B _printf
+- format and print data.
+.SH SYNOPSIS
+.B #include <stdio.h>
+
+.B int _printf(const char
+*\fIformat\fR,...);
+...
+.SH DESCRIPTION
+_printf() will produce output according to the \fIformat\fR as described below. _printf() will print to \fIstdout\fR, the standard output stream;
+
+.B FORMAT
+Format is a character string of ordinary characters (not %), which are copied unchanged to stdout. Conversion specifiers will result in taking in 0 or more arguments. Each one starts with a % and ends with the specifier. In between there could be a \fIflag\fR, an optional minimum \fIfield\fR \fIwidth\fR, an optional \fIprecision\fR and an optional \fIlength/fR \fImodifier\fR.
+
+Arguments must match with the conversion specifier and are used in the order they are given, each specifier will call for the next argument.
+
+.B Flag characters
+
+The % sign is followed by zero or more of the following flags:
+
+\fB#\fR   produces a 0 for octal conversion, '0X' or '0x' for hex conversions
+
+\fB0\fR	  value should be zero padded left justified. With the '-' flag the 0 flag is ignored. if precsion is given, the 0 flag is ignored as well.
+
+\fB-\fR	  left justifies the field
+
+\fB' '\fR (a space) blank should be left before a positive number
+
+\fB+\fR	  A sign (+ or -) placed before a number, a plus overrides a space if both used.
+
+\fB*\fR A sign to set a custom width or precision based on an argument.
+.B Field Width
+
+Optional decimal digit specifying the total fields width.
+
+.B Precision
+
+Precision is setting the size of the number of digits, must be started with a '.' followed by a decimal.
+
+.B length modifier
+
+This only effects integer conversion specifiers, changes the type to correspond to the argument type given.
+
+\fBl\fR - long conversion
+
+\fBll\fR - long long conversion
+
+\fBh\fR - short int conversion
+
+\fBhh\fR - signed or unsigned char conversion
+
+.B Conversion Specifiers
+
+A chracter that will specify the type of conversion to apply for the argument given.
+
+\fBd,i\fR an \fIint\fR argument with signed decimal notation
+
+\fBo,x,X\fR  an \fIint\fR argument with unsigned decimal notation. o converts to octal, x and X converts to hexadecimal with lower and uppercase letters from aA-fF.
+
+\fBc\fR	     takes a character argument.
+
+\fBs\fR	     takes a char * argument
+
+\fBp\fR	     takes a pointer argument and returns address
+
+\fBr\fR	     takes a char * argument and reverses it
+
+\fBR\fR	     takes a char * argument and produces ROT-13 Encrypted version
+
+\fBS\fR	     takes a char * argument and produces the same string along with non printable characters in hex form.
+
+\fB%\fR	     prints a %
+
+\fB b\fR     take an unsigned int argument and prints out the binary
+
+.SH EXAMPLE
+
+int _printf(%s\\n,\*(lqHello\*(rq); will read the %s and grab the first argument, the string hello. It will print the argument and the move to the next character in the format string. It will read the new line character and create a newline afterwards.
+
+
+.SH AUTHOR
+Hillary Ezema, Kyanzi Hassan M
